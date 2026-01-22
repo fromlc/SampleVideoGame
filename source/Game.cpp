@@ -594,7 +594,7 @@ void Game::showDevPanel()
 
 				ImGui::Separator();
 
-				if (ImGui::Button("Spawn One Enemy"))
+				if (ImGui::Button("Spawn Enemies"))
 				{
 					m_manualSpawn = true;
 					m_eMgr.spawnEnemy(m_frameSize);
@@ -604,7 +604,7 @@ void Game::showDevPanel()
 					ImGui::Text("Spawned!");
 				}
 				ImGui::SameLine();
-				ImGui::Button("Spawn One Bullet");
+				ImGui::Button("Spawn Bullet");
 				if (ImGui::IsItemActive())
 				{
 					m_manualSpawn = true;

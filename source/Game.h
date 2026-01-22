@@ -34,6 +34,7 @@ private:
 
 	// ImGui Dev Panel
 	bool				m_runSCollisions;
+	//#TODO only need one boolean? m_manualSpawn
 	bool				m_runSEnemySpawner;
 	bool				m_manualSpawn;
 	bool				m_runSLifespan;
