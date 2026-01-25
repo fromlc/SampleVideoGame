@@ -561,7 +561,7 @@ void Game::showDevPanel()
 			ImGui::Checkbox("Dear ImGui Demo", &m_showImGuiDemo);
 			ImGui::EndTabItem();
 		}
-		if (ImGui::BeginTabItem("Game"))
+		if (ImGui::BeginTabItem("Entities"))
 		{
 			//#TODO for loop on EntityMap keys
 			if (ImGui::CollapsingHeader("Enemies", ImGuiTreeNodeFlags_None))

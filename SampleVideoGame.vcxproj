@@ -156,21 +156,11 @@
     <ClInclude Include="source\Game.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\imgui-1.91.9-docking\imgui.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.91.9-docking\imgui_demo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.91.9-docking\imgui_draw.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.91.9-docking\imgui_tables.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\imgui-1.91.9-docking\imgui_widgets.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="imgui-1.91.9-d\imgui.cpp" />
+    <ClCompile Include="imgui-1.91.9-d\imgui_demo.cpp" />
+    <ClCompile Include="imgui-1.91.9-d\imgui_draw.cpp" />
+    <ClCompile Include="imgui-1.91.9-d\imgui_tables.cpp" />
+    <ClCompile Include="imgui-1.91.9-d\imgui_widgets.cpp" />
     <ClCompile Include="imgui-SFML-3.0\imgui-SFML.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
