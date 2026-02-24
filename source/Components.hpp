@@ -1,5 +1,12 @@
 //------------------------------------------------------------------------------
 // Components.hpp
+// 
+// - Class declarations and definitions for all Entity components
+// - All components are derived from class Component
+// - Each Entity may have a different set of components
+// - These are added to a tuple at Entity instantiation
+// - Each system checks for existence of the component it services,
+//		then manipulates that component's data.
 //------------------------------------------------------------------------------
 #pragma once
 
