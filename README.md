@@ -43,7 +43,7 @@ https://pthom.github.io/imgui_manual_online/
 
 https://www.dearimgui.com/
 
-Dear Imgui License: https://www.dearimgui.com/licenses/
+Dear ImGui License: https://www.dearimgui.com/licenses/
 
 ## ImGui-SFML
 
