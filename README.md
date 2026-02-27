@@ -52,6 +52,8 @@ also compiles with solution source code.
 
 https://github.com/SFML/imgui-sfml/tree/v3.0
 
+ImGui-SFML License: https://github.com/SFML/imgui-sfml/blob/master/LICENSE
+
 ## CMake Tutorials
 
 This solution supports 64-bit Windows. A CMake version for
