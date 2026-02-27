@@ -22,16 +22,22 @@ code.
 This Visual Studio 2022 solution links with downloaded 64-bit
 SFML 3.0.2 static libraries for Windows.
 
+https://github.com/SFML/SFML.git
+
 https://www.sfml-dev.org/download/sfml/3.0.2/#windows
 
 https://www.sfml-dev.org/tutorials/3.0/getting-started/visual-studio/
 
 https://www.sfml-dev.org/tutorials/3.0/getting-started/visual-studio/#creating-and-configuring-an-sfml-project
 
+SFML License: https://www.sfml-dev.org/license/
+
 ## Dear ImGui
 
 Dear Imgui v1.91.9-d source code compiles with solution source 
 code.
+
+https://github.com/ocornut/imgui.git
 
 https://github.com/ocornut/imgui/tree/v1.91.9-docking
 
@@ -41,12 +47,18 @@ https://pthom.github.io/imgui_manual_online/
 
 https://www.dearimgui.com/
 
+Dear ImGui License: https://www.dearimgui.com/licenses/
+
 ## ImGui-SFML
 
 Dear ImGui backend for SFML. ImGui-SFML v3.0 source code
 also compiles with solution source code.
 
+https://github.com/SFML/imgui-sfml.git
+
 https://github.com/SFML/imgui-sfml/tree/v3.0
+
+ImGui-SFML License: https://github.com/SFML/imgui-sfml/blob/master/LICENSE
 
 ## CMake Tutorials
 
