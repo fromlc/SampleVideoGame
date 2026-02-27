@@ -28,6 +28,8 @@ https://www.sfml-dev.org/tutorials/3.0/getting-started/visual-studio/
 
 https://www.sfml-dev.org/tutorials/3.0/getting-started/visual-studio/#creating-and-configuring-an-sfml-project
 
+SFML License: https://www.sfml-dev.org/license/
+
 ## Dear ImGui
 
 Dear Imgui v1.91.9-d source code compiles with solution source 
@@ -40,6 +42,8 @@ https://github.com/ocornut/imgui/wiki/Getting-Started
 https://pthom.github.io/imgui_manual_online/
 
 https://www.dearimgui.com/
+
+Dear Imgui License: https://www.dearimgui.com/licenses/
 
 ## ImGui-SFML
 
