@@ -868,17 +868,17 @@ void Game::run()
         {
             if (!m_paused)
             {
-                // add waiting Entities
+                // add new, waiting Entities and remove dead ones
                 m_eMgr.updateEntityMap();
                 // user input -> movement
                 sMovement();
-                // movement -> collision -> removal
+                // movement -> collision -> death
                 sCollisions();
-                // end of life -> removal
+                // end of life -> death
                 sLifespan();
                 sEnemySpawner();
             }
-            // rotate Entities and process user input in pause mode
+            // rotate Entities in place and process user input in pause mode
             sRender();
             sUserInput();
 
