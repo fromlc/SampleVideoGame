@@ -827,7 +827,7 @@ inline void Game::initScoreText()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void Game::sRenderGameOver(sf::RenderTexture& rTexture)
+void Game::sRenderGameOver(sf::RenderTexture& rTexture) const
 {
     static sf::Text text1(m_font);
     static sf::Text text2(m_font);
