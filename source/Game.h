@@ -4,7 +4,6 @@
 #pragma once
 
 #include "EntityManager.h"
-#include "errors.h"
 
 #ifndef GAME_NO_DEV_IMGUI
 #include <imgui.h>
