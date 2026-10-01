@@ -664,6 +664,12 @@ void Game::showDevPanel()
                                    , m_cfg.enemy.minSpeed
                                    , 30.0);
                 ImGui::PopID();
+
+                ImGui::PushID(IMGUIID::id++);
+                static int playerLives = (int)m_cfg.player.lives;
+                ImGui::SliderInt("Lives", &playerLives, 3, 100);
+                m_cfg.player.lives = playerLives;
+                ImGui::PopID();
                 ImGui::Separator();
             }
 
