@@ -13,8 +13,8 @@
 //------------------------------------------------------------------------------
 
 // constants
-// extra width for ImGui control tabs
-constexpr unsigned int devPanelSizeX = 450;
+// extra width for ImGui control tabs plus 1px
+constexpr unsigned int devPanelSizeX = 451;
 
 // Window configs line: width, height, FrameLimit, boolFullScreen
 ////////////////////////////////////////////////////////////////////////////////
