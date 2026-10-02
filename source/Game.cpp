@@ -539,15 +539,22 @@ void Game::sEntityButtons(ETag tag)
 ////////////////////////////////////////////////////////////////////////////////
 void Game::showDevPanel()
 {
-    //const int DP_X = 450;
-	const int DP_X = m_cfg.window.width - m_cfg.window.frameWidth;
     // specify default position/size in case there's no .ini file data
     // from imgui_demo.cpp:414
     const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
-    ImGui::SetNextWindowPos(ImVec2(main_viewport->WorkPos.x, main_viewport->WorkPos.y + 20), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowPos(
+        ImVec2(main_viewport->WorkPos.x, main_viewport->WorkPos.y + 20)
+        , ImGuiCond_FirstUseEver
+    );
 	// prevent window resize by user
-    //ImGui::SetNextWindowSize(ImVec2(DP_X, m_cfg.window.frameHeight), ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(DP_X, m_cfg.window.frameHeight), 0);
+    //ImGui::SetNextWindowSize(
+    //    ImVec2(devPanelSizeX, (float)m_cfg.window.frameHeight)
+    //    , ImGuiCond_FirstUseEver
+    //);
+    ImGui::SetNextWindowSize(
+        ImVec2(devPanelSizeX, (float)m_cfg.window.frameHeight)
+        , 0
+    );
 
     ImGuiWindowFlags windowFlags = 0;
     //ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoSavedSettings;
