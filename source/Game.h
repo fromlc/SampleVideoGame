@@ -39,6 +39,8 @@ private:
     bool				m_runSLifespan;
     bool				m_runSMovement;
     bool				m_showImGuiDemo;
+    // No player collisions
+    bool				m_zenMode;
 
     Configs&			m_cfg;				// loaded from file
     EntityManager&		m_eMgr;				// maintains entities

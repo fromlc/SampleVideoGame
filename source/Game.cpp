@@ -326,46 +326,49 @@ void Game::sCollisions()
     // smallEnemy/player collision distance
     static float sepcDistance = secRadius + pcRadius;
 
-    // 1) check for enemy collision with player
-
-    sf::Vector2f playerPos = m_player.pos();
-
-    for (spEntity e : m_eMgr.getEntities(ETag::ENEMY))
+    if (!m_zenMode)
     {
-        if (e->distanceTo(playerPos) <= epcDistance)
+        // 1) check for enemy collision with player
+
+        sf::Vector2f playerPos = m_player.pos();
+
+        for (spEntity e : m_eMgr.getEntities(ETag::ENEMY))
         {
-            // deduct points and set player crash color
-            damagePlayer(e->getScoreValue());
-            m_player.get<CShape>().circle.setOutlineColor(m_cfg.player.outlineColor);
-            m_player.get<CShape>().circle.setOutlineThickness(
-                m_cfg.player.outlinePx * EXPLOSION_MULTIPLIER);
-            m_player.get<CShape>().circle.setPointCount(
-                EXPLOSION_CIRCLE_POINTS);
+            if (e->distanceTo(playerPos) <= epcDistance)
+            {
+                // deduct points and set player crash color
+                damagePlayer(e->getScoreValue());
+                m_player.get<CShape>().circle.setOutlineColor(m_cfg.player.outlineColor);
+                m_player.get<CShape>().circle.setOutlineThickness(
+                    m_cfg.player.outlinePx * EXPLOSION_MULTIPLIER);
+                m_player.get<CShape>().circle.setPointCount(
+                    EXPLOSION_CIRCLE_POINTS);
 
-            e->selfDestruct();
+                e->selfDestruct();
+            }
         }
-    }
 
-    // prevent dead Entities from colliding anymore
-    m_eMgr.removeDeadEntities(ETag::ENEMY);
+        // prevent dead Entities from colliding anymore
+        m_eMgr.removeDeadEntities(ETag::ENEMY);
 
-    // 2) check for smallEnemy collisions with player
+        // 2) check for smallEnemy collisions with player
 
-    for (spEntity se : m_eMgr.getEntities(ETag::SMALLENEMY))
-    {
-        if (se->distanceTo(playerPos) <= sepcDistance)
+        for (spEntity se : m_eMgr.getEntities(ETag::SMALLENEMY))
         {
-            // deduct points and set player crash color
-            damagePlayer(se->getScoreValue());
-            m_player.get<CShape>().circle.setOutlineColor({ 255, 0, 0 });
-            m_player.get<CShape>().circle.setOutlineThickness(m_cfg.player.outlinePx * 12);
-            m_player.get<CShape>().circle.setPointCount(30);
-            se->selfDestruct();
+            if (se->distanceTo(playerPos) <= sepcDistance)
+            {
+                // deduct points and set player crash color
+                damagePlayer(se->getScoreValue());
+                m_player.get<CShape>().circle.setOutlineColor({ 255, 0, 0 });
+                m_player.get<CShape>().circle.setOutlineThickness(m_cfg.player.outlinePx * 12);
+                m_player.get<CShape>().circle.setPointCount(30);
+                se->selfDestruct();
+            }
         }
-    }
 
-    // prevent dead Entities from colliding anymore
-    m_eMgr.removeDeadEntities(ETag::SMALLENEMY);
+        // prevent dead Entities from colliding anymore
+        m_eMgr.removeDeadEntities(ETag::SMALLENEMY);
+    }
 
     // 3) check for bullet collisions with enemy
 
@@ -572,6 +575,7 @@ void Game::showDevPanel()
             ImGui::Checkbox("Lifespan", &m_runSLifespan);
             ImGui::Checkbox("Collision", &m_runSCollisions);
             ImGui::Checkbox("Spawning", &m_runSEnemySpawner);
+            ImGui::Checkbox("Zen Mode", &m_zenMode);
             ImGui::Checkbox("Dear ImGui Demo", &m_showImGuiDemo);
             ImGui::EndTabItem();
         }
