@@ -87,7 +87,7 @@ void ConfigsManager::loadPlayerConfigs(std::ifstream& fin)
 
 	m_configs.player.fillColor = { (uint8_t)g_R, (uint8_t)g_G, (uint8_t)g_B };
 
-	fin	>> g_R >> g_G >> g_B
+    fin >> g_R >> g_G >> g_B
 		>> m_configs.player.outlinePx >> m_configs.player.vertices;
 
 	m_configs.player.outlineColor = { (uint8_t)g_R, (uint8_t)g_G, (uint8_t)g_B };
@@ -127,7 +127,7 @@ void ConfigsManager::loadBulletConfigs(std::ifstream& fin)
 
 	m_configs.bullet.fillColor = { (uint8_t)g_R, (uint8_t)g_G, (uint8_t)g_B };
 
-	fin	>> g_R >> g_G >> g_B >> 
+    fin >> g_R >> g_G >> g_B >>
 		m_configs.bullet.outlinePx >> m_configs.bullet.vertices;
 
 	m_configs.bullet.outlineColor = { (uint8_t)g_R, (uint8_t)g_G, (uint8_t)g_B };
@@ -165,9 +165,9 @@ void FontConfigs::print() const
 		<< " Relative File Path: " << fontFile << "\n"
 		<< " Size: " << fontSize << "pt " << "\n"
 		<< " Fill Color:" 
-		<< " " << fillColor.r
-		<< " " << fillColor.g
-		<< " " << fillColor.b << "\n";
+        << " " << (unsigned int)fillColor.r
+        << " " << (unsigned int)fillColor.g
+        << " " << (unsigned int)fillColor.b << "\n";
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -179,13 +179,13 @@ void PlayerConfigs::print() const
 		<< " Lives: " << lives << "\n"
 		<< " Speed: " << speed << "\n"
 		<< " Fill Color:" 
-		<< " " << fillColor.r
-		<< " " << fillColor.g
-		<< " " << fillColor.b << "\n"
+        << " " << (unsigned int)fillColor.r
+        << " " << (unsigned int)fillColor.g
+        << " " << (unsigned int)fillColor.b << "\n"
 		<< " Outline Color:"
-		<< " " << outlineColor.r
-		<< " " << outlineColor.g
-		<< " " << outlineColor.b << "\n"
+        << " " << (unsigned int)outlineColor.r
+        << " " << (unsigned int)outlineColor.g
+        << " " << (unsigned int)outlineColor.b << "\n"
 		<< " Outline Thickness:" << " " << outlinePx << "px\n"
 		<< " Vertices: " << vertices << "\n";
 }
@@ -203,9 +203,9 @@ void EnemyConfigs::print() const
 		<< " " << minSpeed << " - " << maxSpeed << "\n"
 		<< " Enemy Fill Color is random\n"
 		<< " Outline Color:"
-		<< " " << outlineColor.r
-		<< " " << outlineColor.g
-		<< " " << outlineColor.b << "\n"
+        << " " << (unsigned int)outlineColor.r
+        << " " << (unsigned int)outlineColor.g
+        << " " << (unsigned int)outlineColor.b << "\n"
 		<< " Outline Thickness:"
 		<< " " << outlinePx << "px\n"
 		<< " Small Enemy Lifespan: " << smallLifespan << " frames\n"
@@ -222,13 +222,13 @@ void BulletConfigs::print() const
 		<< " Calculated Collision Radius: " << collisionRadius << "px\n"
 		<< " Speed: " << speed << "\n"
 		<< " Fill Color:"
-		<< " " << fillColor.r
-		<< " " << fillColor.g
-		<< " " << fillColor.b << "\n"
+        << " " << (unsigned int)fillColor.r
+        << " " << (unsigned int)fillColor.g
+        << " " << (unsigned int)fillColor.b << "\n"
 		<< " Outline Color:"
-		<< " " << outlineColor.r
-		<< " " << outlineColor.g
-		<< " " << outlineColor.b << "\n"
+        << " " << (unsigned int)outlineColor.r
+        << " " << (unsigned int)outlineColor.g
+        << " " << (unsigned int)outlineColor.b << "\n"
 		<< " Outline Thickness: " << outlinePx << "px\n"
 		<< " Lifespan: " << lifespan << " frames\n";
 }
