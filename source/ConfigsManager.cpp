@@ -57,7 +57,7 @@ Configs& ConfigsManager::getConfigs()
 void ConfigsManager::loadWindowConfigs(std::ifstream& fin)
 {
 	fin >> m_configs.window.frameWidth >> m_configs.window.frameHeight
-		>> m_configs.window.frameLimit;
+        >> m_configs.window.frameLimit >> m_configs.window.fullScreen;
 
 	// add room for ImGui windows
 	m_configs.window.width = m_configs.window.frameWidth + containingSizeX;
