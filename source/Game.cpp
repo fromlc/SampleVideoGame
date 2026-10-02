@@ -586,13 +586,13 @@ void Game::showDevPanel()
                 ImGui::SliderInt("Time Interval"
                                  , &m_cfg.enemy.spawnInterval
                                  , 10
-                                 , 90);
-
+                                 , 90
+                );
                 ImGui::SliderInt("Enemy Count"
                                  , &m_cfg.enemy.spawnCount
                                  , 1
-                                 , 10);
-
+                                 , 10
+                );
                 ImGui::Separator();
 
                 if (ImGui::Button("Spawn Enemies"))
@@ -621,22 +621,25 @@ void Game::showDevPanel()
             {
                 ImGui::SliderFloat("Min Speed"
                                    , &m_cfg.enemy.minSpeed
-                                   , 1
-                                   , 50.0);
-
+                                   , 1.0f
+                                   , 50.0f
+                                   , "%.1f"
+                );
                 ImGui::SliderFloat("Max Speed"
                                    , &m_cfg.enemy.maxSpeed
-                                   , 1
-                                   , 50.0);
-
+                                   , 1.0f
+                                   , 50.0f
+                                   , "%.1f"
+                );
                 if (m_cfg.enemy.minSpeed > m_cfg.enemy.maxSpeed)
                     m_cfg.enemy.minSpeed = m_cfg.enemy.maxSpeed;
 
                 ImGui::PushID(IMGUIID::id++);	// duplicate name below
                 ImGui::SliderInt("Lifespan"
                                  , &m_cfg.enemy.smallLifespan
-                                 , 10, 1000);
-
+                                 , 10
+                                 , 1000
+                );
                 ImGui::PopID();
                 ImGui::Separator();
             }
@@ -646,12 +649,18 @@ void Game::showDevPanel()
                 ImGui::SliderFloat("Speed"
                                    , &m_cfg.bullet.speed
                                    , m_cfg.enemy.minSpeed
-                                   , 50.0);
+                                   , 50.0f
+                                   , "%.1f"
+                );
                 ImGui::PopID();
 
                 ImGui::PushID(IMGUIID::id++);
                 static int bulletLife = (int)m_cfg.bullet.lifespan;
-                ImGui::SliderInt("Lifespan", &bulletLife, 10, 1000);
+                ImGui::SliderInt("Lifespan"
+                                 , &bulletLife
+                                 , 10
+                                 , 1000
+                );
                 m_cfg.bullet.lifespan = bulletLife;
                 ImGui::PopID();
                 ImGui::Separator();
@@ -662,13 +671,25 @@ void Game::showDevPanel()
                 ImGui::SliderFloat("Speed",
                                    &m_player.get<CTransform>().velocity.x
                                    , m_cfg.enemy.minSpeed
-                                   , 30.0);
+                                   , 30.0f
+                                   , "%.1f"
+                );
                 ImGui::PopID();
 
                 ImGui::PushID(IMGUIID::id++);
-                static int playerLives = (int)m_cfg.player.lives;
-                ImGui::SliderInt("Lives", &playerLives, 3, 100);
-                m_cfg.player.lives = playerLives;
+                ImGui::SliderInt("Total Lives"
+                                 , (int*)&m_player.get<CLifespan>().total
+                                 , 1
+                                 , 100
+                );
+                ImGui::PopID();
+
+                ImGui::PushID(IMGUIID::id++);
+                ImGui::SliderInt("Remaining Lives"
+                                 , (int*)&m_player.get<CLifespan>().remaining
+                                 , 0
+                                 , 100
+                );
                 ImGui::PopID();
                 ImGui::Separator();
             }
