@@ -698,7 +698,7 @@ void Game::showDevPanel()
                 ImGui::PopID();
 
                 ImGui::PushID(IMGUIID::id++);
-                ImGui::SliderInt("Remaining Lives"
+                ImGui::SliderInt("Lives Left"
                                  , (int*)&m_player.get<CLifespan>().remaining
                                  , 0
                                  , 100
