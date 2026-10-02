@@ -31,6 +31,9 @@ Game::Game(EntityManager& eMgr, Configs& cfg, sf::Font& font, sf::Text& text)
     m_runSLifespan = true;
     m_runSMovement = true;
     m_showImGuiDemo = false;
+    m_zenMode = false;
+    m_autoFire = false;
+    m_playerMoved = false;
 
     // seed random number generator
     srand((unsigned int)time(0));
@@ -106,14 +109,14 @@ void Game::doPause() { m_paused = true; }
 void Game::unPause() { m_paused = false; }
 
 ////////////////////////////////////////////////////////////////////////////////
-void Game::sMovePlayer()
+bool Game::sMovePlayer()
 {
     // use player pointer, e points to player too
     CInput& rInput = m_player.get<CInput>();
 
     // player movement requires user input
     if (!rInput.right && !rInput.left)
-        return;
+        return false;
 
     CTransform& rTrans = m_player.get<CTransform>();
     float radius = m_player.get<CCollision>().radius;
@@ -124,6 +127,8 @@ void Game::sMovePlayer()
 
     else if (rInput.left && rTrans.pos.x - radius > 0)
         rTrans.pos.x -= rTrans.velocity.x;
+
+    return true;
 }
 
 // System: Entity position / movement update
@@ -138,7 +143,7 @@ void Game::sMovement()
     if (!m_runSMovement) { return; }
 
     // player is special case, process before loop
-    sMovePlayer();
+    m_playerMoved = sMovePlayer();
 
     // move all other Entities
     for (auto& kv : m_eMgr.getEntityMap())
@@ -576,6 +581,7 @@ void Game::showDevPanel()
             ImGui::Checkbox("Collision", &m_runSCollisions);
             ImGui::Checkbox("Spawning", &m_runSEnemySpawner);
             ImGui::Checkbox("Zen Mode", &m_zenMode);
+            ImGui::Checkbox("Auto Fire", &m_autoFire);
             ImGui::Checkbox("Dear ImGui Demo", &m_showImGuiDemo);
             ImGui::EndTabItem();
         }
@@ -925,6 +931,11 @@ void Game::run()
             }
             // rotate Entities in place and process user input in pause mode
             sRender();
+
+            // autoFire is an ImGui DevPanel control for demo play
+            if (m_autoFire && m_playerMoved && !(m_currentFrame % 3))
+                m_eMgr.spawnBullet(m_player.pos());
+
             sUserInput();
 
             m_currentFrame++;
