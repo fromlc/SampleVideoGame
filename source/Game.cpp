@@ -74,7 +74,8 @@ inline void Game::initWindow()
 
     // reset player position on enemy collision
     float x = m_frameSize.x / 2.0f;
-    float y = (float)m_frameSize.y;
+    // lower player profile 
+    float y = (float)m_frameSize.y + 10;
     m_playerStartPos = { x, y };
 
     // for positioning text
@@ -538,7 +539,8 @@ void Game::sEntityButtons(ETag tag)
 ////////////////////////////////////////////////////////////////////////////////
 void Game::showDevPanel()
 {
-    const int DP_X = 450;
+    //const int DP_X = 450;
+	const int DP_X = m_cfg.window.width - m_cfg.window.frameWidth;
     // specify default position/size in case there's no .ini file data
     // from imgui_demo.cpp:414
     const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
