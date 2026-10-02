@@ -58,7 +58,8 @@ inline void Game::initWindow()
 
     // ImGui i/o state
     ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    // prevent docking behavior
+    //io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     m_pImguiFont = io.Fonts->AddFontFromFileTTF(
         "fonts/hubballi-regular.ttf", 24);
@@ -537,11 +538,14 @@ void Game::sEntityButtons(ETag tag)
 ////////////////////////////////////////////////////////////////////////////////
 void Game::showDevPanel()
 {
+    const int DP_X = 450;
+    const int DP_Y = 720;
     // specify default position/size in case there's no .ini file data
     // from imgui_demo.cpp:414
     const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
     ImGui::SetNextWindowPos(ImVec2(main_viewport->WorkPos.x, main_viewport->WorkPos.y + 20), ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(450, 680), ImGuiCond_FirstUseEver);
+    //ImGui::SetNextWindowSize(ImVec2(DP_X, DP_Y), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowSize(ImVec2(DP_X, DP_Y), 0);
 
     ImGuiWindowFlags windowFlags = 0;
     //ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoSavedSettings;
