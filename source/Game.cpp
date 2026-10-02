@@ -913,9 +913,9 @@ void Game::run()
                 m_eMgr.updateEntityMap();
                 // user input -> movement
                 sMovement();
-                // movement -> collision -> death
+                // movement -> collision -> end of life - remove
                 sCollisions();
-                // end of life -> death
+                // end of life -> remove
                 sLifespan();
                 sEnemySpawner();
             }
