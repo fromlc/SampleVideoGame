@@ -43,6 +43,8 @@ private:
     bool				m_zenMode;
     bool				m_autoFire;
     bool				m_playerMoved;
+    bool				m_singleFrameMode;
+    bool				m_singleFrameAdvance;
 
     Configs&			m_cfg;				// loaded from file
     EntityManager&		m_eMgr;				// maintains entities
