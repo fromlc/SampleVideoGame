@@ -583,7 +583,6 @@ void Game::showDevPanel()
             ImGui::Checkbox("Lifespan", &m_runSLifespan);
             ImGui::Checkbox("Collision", &m_runSCollisions);
             ImGui::Checkbox("Spawning", &m_runSEnemySpawner);
-            ImGui::Checkbox("Zen Mode", &m_zenMode);
             ImGui::Checkbox("Auto Fire", &m_autoFire);
             if (m_autoFire)
             {
@@ -594,7 +593,7 @@ void Game::showDevPanel()
                 );
 
             }
-            ImGui::Checkbox("Dear ImGui Demo", &m_showImGuiDemo);
+            ImGui::Checkbox("Zen Mode", &m_zenMode);
             ImGui::Checkbox("Single Frame Advance Mode", &m_singleFrameMode);
             if (m_singleFrameMode)
             {
@@ -770,6 +769,12 @@ void Game::showDevPanel()
                 ImGui::BulletText("fonts/ folder contains TTF font files");
                 ImGui::Separator();
             }
+            ImGui::EndTabItem();
+        }
+        if (ImGui::BeginTabItem("ImGui"))
+        {
+            ImGui::Checkbox("Dear ImGui Demo", &m_showImGuiDemo);
+            ImGui::SameLine();
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
