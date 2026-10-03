@@ -586,9 +586,9 @@ void Game::showDevPanel()
             ImGui::Checkbox("Auto Fire", &m_autoFire);
             if (m_autoFire)
             {
-                ImGui::SliderInt("AutoFire Frames"
+                ImGui::SliderInt("Frame Interval"
                     , &m_autoFireFrames
-                    , 3
+                    , 1
                     , 10
                 );
 
