@@ -33,6 +33,7 @@ Game::Game(EntityManager& eMgr, Configs& cfg, sf::Font& font, sf::Text& text)
     m_showImGuiDemo = false;
     m_zenMode = false;
     m_autoFire = false;
+    m_autoFireFrames = 4;
     m_playerMoved = false;
     m_singleFrameMode = false;
     m_singleFrameAdvance = false;
@@ -584,6 +585,15 @@ void Game::showDevPanel()
             ImGui::Checkbox("Spawning", &m_runSEnemySpawner);
             ImGui::Checkbox("Zen Mode", &m_zenMode);
             ImGui::Checkbox("Auto Fire", &m_autoFire);
+            if (m_autoFire)
+            {
+                ImGui::SliderInt("AutoFire Frames"
+                    , &m_autoFireFrames
+                    , 3
+                    , 10
+                );
+
+            }
             ImGui::Checkbox("Dear ImGui Demo", &m_showImGuiDemo);
             ImGui::Checkbox("Single Frame Advance Mode", &m_singleFrameMode);
             if (m_singleFrameMode)
@@ -942,7 +952,7 @@ void Game::run()
             sRender();
 
             // autoFire is an ImGui DevPanel control for demo play
-            if (m_autoFire && !(m_currentFrame % 3))
+            if (m_autoFire && !(m_currentFrame % m_autoFireFrames))
                 m_eMgr.spawnBullet(m_player.pos());
 
             sUserInput();

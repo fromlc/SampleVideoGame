@@ -42,6 +42,7 @@ private:
     // No player collisions
     bool				m_zenMode;
     bool				m_autoFire;
+    int				    m_autoFireFrames;
     bool				m_playerMoved;
     bool				m_singleFrameMode;
     bool				m_singleFrameAdvance;
