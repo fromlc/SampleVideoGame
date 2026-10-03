@@ -942,7 +942,6 @@ void Game::run()
             sRender();
 
             // autoFire is an ImGui DevPanel control for demo play
-            //if (m_autoFire && m_playerMoved && !(m_currentFrame % 3))
             if (m_autoFire && !(m_currentFrame % 3))
                 m_eMgr.spawnBullet(m_player.pos());
 
