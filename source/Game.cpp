@@ -24,20 +24,6 @@ Game::Game(EntityManager& eMgr, Configs& cfg, sf::Font& font, sf::Text& text)
     m_paused = false;
     m_gameOver = false;
 
-    // ImGui System tab controls
-    m_runSCollisions = true;
-    m_runSEnemySpawner = true;
-    m_manualSpawn = false;
-    m_runSLifespan = true;
-    m_runSMovement = true;
-    m_showImGuiDemo = false;
-    m_zenMode = false;
-    m_autoFire = false;
-    m_autoFireFrames = 4;
-    m_playerMoved = false;
-    m_singleFrameMode = false;
-    m_singleFrameAdvance = false;
-
     // seed random number generator
     srand((unsigned int)time(0));
 
@@ -143,10 +129,10 @@ bool Game::sMovePlayer()
 void Game::sMovement()
 {
     // ImGui System tab control
-    if (!m_runSMovement) { return; }
+    if (!m_imgui.runSMovement) { return; }
 
     // player is special case, process before loop
-    m_playerMoved = sMovePlayer();
+    m_imgui.playerMoved = sMovePlayer();
 
     // move all other Entities
     for (auto& kv : m_eMgr.getEntityMap())
@@ -271,7 +257,7 @@ void Game::sUserInput()
 void Game::sLifespan()
 {
     // ImGui System tab control
-    if (!m_runSLifespan) { return; }
+    if (!m_imgui.runSLifespan) { return; }
 
     for (auto& kv : m_eMgr.getEntityMap())
     {
@@ -299,7 +285,7 @@ void Game::sLifespan()
 void Game::sEnemySpawner()
 {
     // ImGui System tab controls
-    if (!m_runSEnemySpawner && !m_manualSpawn) { return; }
+    if (!m_imgui.runSEnemySpawner && !m_imgui.manualSpawn) { return; }
 
     if ((m_currentFrame - m_lastEnemySpawnTime)
         >= m_cfg.enemy.spawnInterval)
@@ -315,7 +301,7 @@ void Game::sEnemySpawner()
 void Game::sCollisions()
 {
     // ImGui System tab controls
-    if (!m_runSCollisions) { return; }
+    if (!m_imgui.runSCollisions) { return; }
 
     // configs data does not change during Game
     static float bcRadius = m_cfg.bullet.collisionRadius;
@@ -334,7 +320,7 @@ void Game::sCollisions()
     // smallEnemy/player collision distance
     static float sepcDistance = secRadius + pcRadius;
 
-    if (!m_zenMode)
+    if (!m_imgui.zenMode)
     {
         // 1) check for enemy collision with player
 
@@ -557,7 +543,7 @@ void Game::showDevPanel()
         ImVec2(main_viewport->WorkPos.x, main_viewport->WorkPos.y + 20)
         , ImGuiCond_FirstUseEver
     );
-	// prevent window resize by user
+    // prevent window resize by user
     //ImGui::SetNextWindowSize(
     //    ImVec2(devPanelSizeX, (float)m_cfg.window.frameHeight)
     //    , ImGuiCond_FirstUseEver
@@ -579,26 +565,26 @@ void Game::showDevPanel()
     {
         if (ImGui::BeginTabItem("Systems"))
         {
-            ImGui::Checkbox("Movement", &m_runSMovement);
-            ImGui::Checkbox("Lifespan", &m_runSLifespan);
-            ImGui::Checkbox("Collision", &m_runSCollisions);
-            ImGui::Checkbox("Spawning", &m_runSEnemySpawner);
-            ImGui::Checkbox("Auto Fire", &m_autoFire);
-            if (m_autoFire)
+            ImGui::Checkbox("Movement", &m_imgui.runSMovement);
+            ImGui::Checkbox("Lifespan", &m_imgui.runSLifespan);
+            ImGui::Checkbox("Collision", &m_imgui.runSCollisions);
+            ImGui::Checkbox("Spawning", &m_imgui.runSEnemySpawner);
+            ImGui::Checkbox("Auto Fire", &m_imgui.autoFire);
+            if (m_imgui.autoFire)
             {
                 ImGui::SliderInt("Frame Interval"
-                    , &m_autoFireFrames
-                    , 1
-                    , 10
+                                 , &m_imgui.autoFireFrames
+                                 , 1
+                                 , 10
                 );
 
             }
-            ImGui::Checkbox("Zen Mode", &m_zenMode);
-            ImGui::Checkbox("Single Frame Advance Mode", &m_singleFrameMode);
-            if (m_singleFrameMode)
+            ImGui::Checkbox("Zen Mode", &m_imgui.zenMode);
+            ImGui::Checkbox("Single Frame Advance Mode", &m_imgui.singleFrameMode);
+            if (m_imgui.singleFrameMode)
             {
-                if (m_singleFrameAdvance = ImGui::Button("Advance One Frame"))
-                    m_singleFrameAdvance = true;
+                if (m_imgui.singleFrameAdvance = ImGui::Button("Advance One Frame"))
+                    m_imgui.singleFrameAdvance = true;
             }
             ImGui::SameLine();
             ImGui::EndTabItem();
@@ -638,9 +624,9 @@ void Game::showDevPanel()
 
                 if (ImGui::Button("Spawn Enemies"))
                 {
-                    m_manualSpawn = true;
+                    m_imgui.manualSpawn = true;
                     m_eMgr.spawnEnemy(m_frameSize);
-                    m_manualSpawn = false;
+                    m_imgui.manualSpawn = false;
 
                     ImGui::SameLine();
                     ImGui::Text("Spawned!");
@@ -649,9 +635,9 @@ void Game::showDevPanel()
                 ImGui::Button("Spawn Bullet");
                 if (ImGui::IsItemActive())
                 {
-                    m_manualSpawn = true;
+                    m_imgui.manualSpawn = true;
                     m_eMgr.spawnBullet(m_player.pos());
-                    m_manualSpawn = false;
+                    m_imgui.manualSpawn = false;
 
                     ImGui::SameLine();
                     ImGui::Text("Spawned!");
@@ -773,7 +759,7 @@ void Game::showDevPanel()
         }
         if (ImGui::BeginTabItem("ImGui"))
         {
-            ImGui::Checkbox("Dear ImGui Demo", &m_showImGuiDemo);
+            ImGui::Checkbox("Dear ImGui Demo", &m_imgui.showImGuiDemo);
             ImGui::SameLine();
             ImGui::EndTabItem();
         }
@@ -863,7 +849,7 @@ void Game::sRender()
     ImGui::DockSpaceOverViewport();
 
     // Dear ImGui Demo
-    if (m_showImGuiDemo)
+    if (m_imgui.showImGuiDemo)
         ImGui::ShowDemoWindow();
 
     showDevPanel();
@@ -939,7 +925,7 @@ void Game::run()
 {
     while (m_window.isOpen())
     {
-        while (!m_gameOver && !(m_singleFrameMode && !m_singleFrameAdvance))
+        while (!m_gameOver && !(m_imgui.singleFrameMode && !m_imgui.singleFrameAdvance))
         {
             if (!m_paused)
             {
@@ -957,7 +943,7 @@ void Game::run()
             sRender();
 
             // autoFire is an ImGui DevPanel control for demo play
-            if (m_autoFire && !(m_currentFrame % m_autoFireFrames))
+            if (m_imgui.autoFire && !(m_currentFrame % m_imgui.autoFireFrames))
                 m_eMgr.spawnBullet(m_player.pos());
 
             sUserInput();

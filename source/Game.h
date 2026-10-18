@@ -3,6 +3,7 @@
 //------------------------------------------------------------------------------
 #pragma once
 
+#include "DevPanel.hpp"
 #include "EntityManager.h"
 
 #ifndef GAME_NO_DEV_IMGUI
@@ -31,21 +32,7 @@ private:
     sf::Text&			m_text;				// scoreboard text
     ImFont*				m_pImguiFont;		// for ImGui windows
 
-    // ImGui Dev Panel
-    bool				m_runSCollisions;
-    //#TODO only need one boolean? m_manualSpawn
-    bool				m_runSEnemySpawner;
-    bool				m_manualSpawn;
-    bool				m_runSLifespan;
-    bool				m_runSMovement;
-    bool				m_showImGuiDemo;
-    // No player collisions
-    bool				m_zenMode;
-    bool				m_autoFire;
-    int				    m_autoFireFrames;
-    bool				m_playerMoved;
-    bool				m_singleFrameMode;
-    bool				m_singleFrameAdvance;
+    DevPanel            m_imgui;            // ImGui Dev Panel
 
     Configs&			m_cfg;				// loaded from file
     EntityManager&		m_eMgr;				// maintains entities

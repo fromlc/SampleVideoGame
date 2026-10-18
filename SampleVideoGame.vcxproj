@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="source\Components.hpp" />
     <ClInclude Include="source\ConfigsManager.h" />
+    <ClInclude Include="source\DevPanel.hpp" />
     <ClInclude Include="source\Entity.h" />
     <ClInclude Include="source\EntityManager.h" />
     <ClInclude Include="source\errors.h" />
