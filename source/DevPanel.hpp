@@ -17,7 +17,7 @@ public:
     bool    zenMode = false;            // no player collisions
     bool    autoFire = false;
     int	    autoFireFrames = 4;
-    bool    playerMoved = false;
+    bool    autoPlayer = false;
     bool    singleFrameMode = false;
     bool    singleFrameAdvance = false;
 

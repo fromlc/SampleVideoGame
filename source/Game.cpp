@@ -98,14 +98,19 @@ void Game::doPause() { m_paused = true; }
 void Game::unPause() { m_paused = false; }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool Game::sMovePlayer()
+void Game::sMovePlayer()
 {
+    if (m_imgui.autoPlayer)
+    {
+
+    }
+
     // use player pointer, e points to player too
     CInput& rInput = m_player.get<CInput>();
 
     // player movement requires user input
     if (!rInput.right && !rInput.left)
-        return false;
+        return;
 
     CTransform& rTrans = m_player.get<CTransform>();
     float radius = m_player.get<CCollision>().radius;
@@ -116,8 +121,6 @@ bool Game::sMovePlayer()
 
     else if (rInput.left && rTrans.pos.x - radius > 0)
         rTrans.pos.x -= rTrans.velocity.x;
-
-    return true;
 }
 
 // System: Entity position / movement update
@@ -132,7 +135,7 @@ void Game::sMovement()
     if (!m_imgui.runSMovement) { return; }
 
     // player is special case, process before loop
-    m_imgui.playerMoved = sMovePlayer();
+    sMovePlayer();
 
     // move all other Entities
     for (auto& kv : m_eMgr.getEntityMap())

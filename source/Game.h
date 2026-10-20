@@ -53,7 +53,7 @@ private:
     void doPause();
     void unPause();
                             // System: Entity position / movement update
-    bool sMovePlayer();
+    void sMovePlayer();
     void sMovement();
                             // System: User Input
     void sKeyPressed(sf::Keyboard::Scancode);
