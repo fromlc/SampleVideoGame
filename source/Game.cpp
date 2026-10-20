@@ -582,6 +582,7 @@ void Game::showDevPanel()
                 );
 
             }
+            ImGui::Checkbox("Auto Player Move", &m_imgui.autoPlayer);
             ImGui::Checkbox("Zen Mode", &m_imgui.zenMode);
             ImGui::Checkbox("Single Frame Advance Mode", &m_imgui.singleFrameMode);
             if (m_imgui.singleFrameMode)
