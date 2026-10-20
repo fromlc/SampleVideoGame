@@ -100,9 +100,24 @@ void Game::unPause() { m_paused = false; }
 ////////////////////////////////////////////////////////////////////////////////
 void Game::sMovePlayer()
 {
+    // for auto player movement, 1 = right, -1 = left
+    static int moveDirection = 1;
+
+    // auto player movement
     if (m_imgui.autoPlayer)
     {
+        CTransform& rTrans = m_player.get<CTransform>();
+        float radius = m_player.get<CCollision>().radius;
 
+        // player at left or right window edge?
+        if (moveDirection == 1 && (rTrans.pos.x + radius >= m_frameSize.x))
+            moveDirection = -1;
+
+        else if (moveDirection == -1 && (rTrans.pos.x - radius <= 0))
+            moveDirection = 1;
+
+        rTrans.pos.x += (rTrans.velocity.x * moveDirection);
+        return;
     }
 
     // use player pointer, e points to player too
