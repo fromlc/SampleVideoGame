@@ -66,7 +66,7 @@ private:
     inline void sfColorToImVec4(sf::Color, ImVec4&);
     void sEntityButtons(ETag);
     void sPlayerButton();
-    void showDevPanel();
+    void devPanel();
                             // System: Render / Drawing
     void sRenderPlayer(sf::RenderTexture&);	// only player uses stack memory
     void sRenderEntity(spEntity, sf::RenderTexture&);

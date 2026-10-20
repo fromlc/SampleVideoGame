@@ -552,7 +552,7 @@ void Game::sEntityButtons(ETag tag)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void Game::showDevPanel()
+void Game::devPanel()
 {
     // specify default position/size in case there's no .ini file data
     // from imgui_demo.cpp:414
@@ -717,7 +717,7 @@ void Game::showDevPanel()
                 ImGui::SliderFloat("Speed",
                                    &m_player.get<CTransform>().velocity.x
                                    , m_cfg.enemy.minSpeed
-                                   , 30.0f
+                                   , 20.0f
                                    , "%.1f"
                 );
                 ImGui::PopID();
@@ -871,7 +871,7 @@ void Game::sRender()
     if (m_imgui.showImGuiDemo)
         ImGui::ShowDemoWindow();
 
-    showDevPanel();
+    devPanel();
 
     // specify default position/size in case there's no .ini file data
     // from imgui_demo.cpp:414
