@@ -29,27 +29,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 namespace GAMEFILES
 {
-	const std::string cfgFile = "config/config.txt";
-	const std::string fontFile = "fonts/Share-TechMono.ttf";
+    const std::string cfgFile = "config/config.txt";
+    const std::string fontFile = "fonts/Share-TechMono.ttf";
 }
 
 // entry point
 ////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-	// load configs from file
-	ConfigsManager cMgr(GAMEFILES::cfgFile);
+    // load configs from file
+    ConfigsManager cMgr(GAMEFILES::cfgFile);
 
-	// EntityManager and Game both need window and Entity configs
-	Configs& cfg = cMgr.getConfigs();
+    // EntityManager and Game both need window and Entity configs
+    Configs& cfg = cMgr.getConfigs();
 
-	EntityManager eMgr(cfg);
+    EntityManager eMgr(cfg);
 
-	sf::Font font(cfg.font.fontFile);
-	sf::Text scoreText(font);
+    sf::Font font(cfg.font.fontFile);
+    sf::Text scoreText(font);
 
-	Game g(eMgr, cfg, font, scoreText);
-	g.run();
+    Game g(eMgr, cfg, font, scoreText);
+    g.run();
 
-	return 0;
+    return 0;
 }

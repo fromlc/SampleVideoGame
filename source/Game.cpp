@@ -746,7 +746,7 @@ void Game::devPanel()
 
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("About"))
+        if (ImGui::BeginTabItem("Help"))
         {
             if (ImGui::CollapsingHeader("Keyboard Commands", ImGuiTreeNodeFlags_None))
             {
@@ -768,8 +768,8 @@ void Game::devPanel()
             }
             if (ImGui::CollapsingHeader("Scoring", ImGuiTreeNodeFlags_None))
             {
-                ImGui::BulletText("Enemies are worth 10 points per vertex.");
-                ImGui::BulletText("Small enemies are worth 2X spawning enemy.");
+                ImGui::BulletText("Enemies: 10 * (#vertices + speed).");
+                ImGui::BulletText("Small enemies: 2X spawning enemy.");
                 ImGui::Separator();
             }
             if (ImGui::CollapsingHeader("Game Files", ImGuiTreeNodeFlags_None))
@@ -782,8 +782,25 @@ void Game::devPanel()
         }
         if (ImGui::BeginTabItem("ImGui"))
         {
-            ImGui::Checkbox("Dear ImGui Demo", &m_imgui.showImGuiDemo);
-            ImGui::SameLine();
+//            ImGui::SameLine();
+            ImGui::Text("Dear ImGui is an open-source runtime");
+            ImGui::Text("game editor used in game development.");
+            ImGui::Text("It's great for debugging and tuning");
+            ImGui::Text("game settings for maximum fun.");
+            ImGui::Text("The main developer is Omar Cornut,");
+            ImGui::Text("with contributions from other skilled");
+            ImGui::Text("game developers.");
+            ImGui::Separator();
+
+            ImGui::TextLinkOpenURL("Dear ImGui home page", "https://github.com/ocornut/imgui");
+            ImGui::TextLinkOpenURL("Dear ImGui FAQs and links", "https://www.dearimgui.com/");
+            ImGui::TextLinkOpenURL("Software using Dear ImGui", "https://github.com/ocornut/imgui/wiki/Software-using-Dear-ImGui");
+            ImGui::TextLinkOpenURL("Licenses and Sales", "https://www.dearimgui.com/licenses/");
+            ImGui::Separator();
+
+            ImGui::Checkbox("Show Dear ImGui Demo Window", &m_imgui.showImGuiDemo);
+            ImGui::Separator();
+
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
