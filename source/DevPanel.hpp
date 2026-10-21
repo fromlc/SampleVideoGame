@@ -20,6 +20,7 @@ public:
     bool    autoPlayer = false;
     bool    singleFrameMode = false;
     bool    singleFrameAdvance = false;
+    bool    demoMode = false;
 
     DevPanel() = default;
 };

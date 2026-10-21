@@ -595,16 +595,20 @@ void Game::devPanel()
                                  , 1
                                  , 10
                 );
-
             }
             ImGui::Checkbox("Auto Player Move", &m_imgui.autoPlayer);
-            ImGui::Checkbox("Zen Mode", &m_imgui.zenMode);
+            ImGui::Checkbox("Zen Mode (No Player Collisions)", &m_imgui.zenMode);
             ImGui::Checkbox("Single Frame Advance Mode", &m_imgui.singleFrameMode);
             if (m_imgui.singleFrameMode)
             {
                 if (m_imgui.singleFrameAdvance = ImGui::Button("Advance One Frame"))
                     m_imgui.singleFrameAdvance = true;
             }
+            ImGui::Checkbox("Demo Mode", &m_imgui.demoMode);
+            m_imgui.autoPlayer = m_imgui.demoMode;
+            m_imgui.autoFire = m_imgui.demoMode;
+            m_imgui.zenMode = m_imgui.demoMode;
+
             ImGui::SameLine();
             ImGui::EndTabItem();
         }
