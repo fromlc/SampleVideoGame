@@ -4,7 +4,6 @@
 #include "Entity.h"
 
 #include <string>
-#include <tuple>
 
 // prevent user Entity creation with private constructors
 ////////////////////////////////////////////////////////////////////////////////
