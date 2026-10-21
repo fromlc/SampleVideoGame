@@ -165,8 +165,8 @@ void EntityManager::spawnEnemy(sf::Vector2u frameSize)
         // lifespan is at min half configs lifespan, max follows configs
         e->add<CLifespan>({ (unsigned int)m_cfg.enemy.smallLifespan * 2 });
 
-        // enemy point value is configs * number of vertices
-        e->setScoreValue((int)(m_cfg.enemy.scoreValue * (int)vertices));
+        // enemy point value is configs * number of vertices * x velocity
+        e->setScoreValue((int)(m_cfg.enemy.scoreValue * ((int)vertices + randomSpeed.x)));
     }
 }
 

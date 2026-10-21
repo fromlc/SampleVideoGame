@@ -10,22 +10,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 Entity::Entity()
 {
-	// only player Entity uses constructor with no args
-	m_tag = ETag::PLAYER;
-	m_id = 0;
-	m_scoreValue = 0;
-	// initialized but not used for player
-	m_isAlive = true;
-	m_name = "player";
+    // only player Entity uses constructor with no args
+    m_tag = ETag::PLAYER;
+    m_id = 0;
+    m_scoreValue = 0;
+    // initialized but not used for player
+    m_isAlive = true;
+    m_name = "player";
 }
 
 Entity::Entity(ETag tag, unsigned int id, const std::string& name)
-	: m_tag(tag)
-	, m_id(id)
-	, m_name(name)
+    : m_tag(tag)
+    , m_id(id)
+    , m_name(name)
 {
-	m_scoreValue = 0;
-	m_isAlive = true;
+    m_scoreValue = 0;
+    m_isAlive = true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -40,8 +40,8 @@ const std::string& Entity::getName() const { return m_name; }
 ////////////////////////////////////////////////////////////////////////////////
 void Entity::selfDestruct()
 {
-	m_isAlive = false;
-	get<CLifespan>().remaining = 0;
+    m_isAlive = false;
+    get<CLifespan>().remaining = 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@ void Entity::addPoints(int points) { m_scoreValue += points; }
 ////////////////////////////////////////////////////////////////////////////////
 float Entity::distanceTo(const sf::Vector2f& fromPos)
 {
-	sf::Vector2f& thisPos = pos();
-	float distX = fromPos.x - thisPos.x;
-	float distY = fromPos.y - thisPos.y;
+    sf::Vector2f& thisPos = pos();
+    float distX = fromPos.x - thisPos.x;
+    float distY = fromPos.y - thisPos.y;
 
-	return sqrtf(distX * distX + distY * distY);
+    return sqrtf(distX * distX + distY * distY);
 }
