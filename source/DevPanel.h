@@ -1,9 +1,14 @@
 //------------------------------------------------------------------------------
-// DevPanel.hpp
+// DevPanel.h
 // 
 // items editable with ImGui Dev Panel
 //------------------------------------------------------------------------------
 #pragma once
+
+#include "ConfigsManager.h"
+#include "EntityManager.h"
+
+#include <imgui.h>
 
 class DevPanel
 {
@@ -23,5 +28,10 @@ public:
     bool    demoMode = false;
 
     DevPanel() = default;
-};
+    void showDevPanel(Entity& player, Configs& cfg, EntityManager& emgr, sf::Vector2u frameSize);
 
+private:
+    inline void sfColorToImVec4(sf::Color sfColor, ImVec4& v4Color);
+    void playerButton(Entity& player);
+    void entityButtons(EntityManager& emgr, ETag tag);
+};

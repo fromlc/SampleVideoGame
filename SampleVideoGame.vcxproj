@@ -150,7 +150,7 @@
   <ItemGroup>
     <ClInclude Include="source\Components.hpp" />
     <ClInclude Include="source\ConfigsManager.h" />
-    <ClInclude Include="source\DevPanel.hpp" />
+    <ClInclude Include="source\DevPanel.h" />
     <ClInclude Include="source\Entity.h" />
     <ClInclude Include="source\EntityManager.h" />
     <ClInclude Include="source\errors.h" />
@@ -166,6 +166,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="source\ConfigsManager.cpp" />
+    <ClCompile Include="source\DevPanel.cpp" />
     <ClCompile Include="source\Entity.cpp" />
     <ClCompile Include="source\EntityManager.cpp" />
     <ClCompile Include="source\Game.cpp" />

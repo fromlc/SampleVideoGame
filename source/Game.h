@@ -3,16 +3,12 @@
 //------------------------------------------------------------------------------
 #pragma once
 
-#include "DevPanel.hpp"
+#include "DevPanel.h"
 #include "EntityManager.h"
 
 #ifndef GAME_NO_DEV_IMGUI
 #include <imgui.h>
-#include <imgui-SFML.h>
 #endif
-
-#include <memory>
-#include <string>
 
 ////////////////////////////////////////////////////////////////////////////////
 class Game
@@ -62,11 +58,6 @@ private:
 
     void sLifespan();		// System: Lifespan
 
-                            // System: ImGui in DEBUG config only
-    inline void sfColorToImVec4(sf::Color, ImVec4&);
-    void sEntityButtons(ETag);
-    void sPlayerButton();
-    void devPanel();
                             // System: Render / Drawing
     void sRenderPlayer(sf::RenderTexture&);	// only player uses stack memory
     void sRenderEntity(spEntity, sf::RenderTexture&);
