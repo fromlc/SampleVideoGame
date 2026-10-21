@@ -9,8 +9,27 @@
 
 #include <imgui.h>
 
+//------------------------------------------------------------------------------
+// constants
+//------------------------------------------------------------------------------
+constexpr int AUTOFIRE_FRAMES = 5;
+
 ////////////////////////////////////////////////////////////////////////////////
-namespace IMGUIID { static int id = 0; }
+DevPanel::DevPanel() :
+    runSCollisions(true)        // collision system on
+    , runSEnemySpawner(true)    // auto spawning on
+    , manualSpawn(false)
+    , runSLifespan(true)        // lifespan system on
+    , runSMovement(true)        // movement system on
+    , showImGuiDemo(false)      // demo window not visible
+    , zenMode(false)            // no player collisions
+    , autoFire(false)
+    , autoFireFrames(AUTOFIRE_FRAMES)
+    , autoPlayer(false)
+    , singleFrameMode(false)
+    , singleFrameAdvance(false)
+    , demoMode(false)
+{ }
 
 ////////////////////////////////////////////////////////////////////////////////
 inline void DevPanel::sfColorToImVec4(sf::Color sfColor, ImVec4& v4Color)
@@ -20,6 +39,9 @@ inline void DevPanel::sfColorToImVec4(sf::Color sfColor, ImVec4& v4Color)
     v4Color.z = sfColor.b / 255.0f;
     v4Color.w = sfColor.a / 255.0f;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+namespace IMGUIID { static int id = 0; }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DevPanel::playerButton(Entity& player)
@@ -43,6 +65,8 @@ void DevPanel::playerButton(Entity& player)
                 , player.getId(), playerPos.x, playerPos.y
                 , player.get<CLifespan>().remaining);
 }
+
+//#TODO replace all literals with constants!
 
 ////////////////////////////////////////////////////////////////////////////////
 void DevPanel::entityButtons(EntityManager& emgr, ETag tag)

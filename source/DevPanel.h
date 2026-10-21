@@ -13,21 +13,21 @@
 class DevPanel
 {
 public:
-    bool    runSCollisions = true;      // collision system on
-    bool    runSEnemySpawner = true;    // auto spawning on
-    bool    manualSpawn = false;
-    bool    runSLifespan = true;        // lifespan system on
-    bool    runSMovement = true;        // movement system on
-    bool    showImGuiDemo = false;      // demo window not visible
-    bool    zenMode = false;            // no player collisions
-    bool    autoFire = false;
-    int	    autoFireFrames = 5;
-    bool    autoPlayer = false;
-    bool    singleFrameMode = false;
-    bool    singleFrameAdvance = false;
-    bool    demoMode = false;
+    bool    runSCollisions;      // collision system on
+    bool    runSEnemySpawner;    // auto spawning on
+    bool    manualSpawn;
+    bool    runSLifespan;        // lifespan system on
+    bool    runSMovement;        // movement system on
+    bool    showImGuiDemo;        // demo window not visible
+    bool    zenMode;              // no player collisions
+    bool    autoFire;
+    int	    autoFireFrames;
+    bool    autoPlayer;
+    bool    singleFrameMode;
+    bool    singleFrameAdvance;
+    bool    demoMode;
 
-    DevPanel() = default;
+    DevPanel();
     void showDevPanel(Entity& player, Configs& cfg, EntityManager& emgr, sf::Vector2u frameSize);
 
 private:
